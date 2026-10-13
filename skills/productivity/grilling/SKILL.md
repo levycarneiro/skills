@@ -28,3 +28,5 @@ Each round the user answers reshapes the tree: settled decisions push the fronti
 Finding _facts_ is your job, never the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), dispatch a sub-agent to find it; don't ask the user for anything you could look up yourself. Don't block on it: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait for the sub-agent to report; ask the rest of the frontier now. The _decisions_ are the user's: put each to them and wait.
 
 The session is done when the frontier is empty: every branch of the design tree visited, nothing left silently assumed. Do not act on it until the user confirms you have reached a shared understanding.
+
+If the AskUserQuestion tool is available, first ask the user (with it) whether they want to answer in text or via the dialog, and use that mode for the rest of the session. In dialog mode, ask up to 4 questions per call (split larger rounds across calls), put your recommended answer first marked “(Recommended)”, and fall back to text for questions that don’t have discrete options.
